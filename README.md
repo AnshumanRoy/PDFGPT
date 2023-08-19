@@ -3,7 +3,7 @@ PDFGPT is a Python-based tool designed to provide users with a seamless way to e
 
 ## Sample Output
 
-Here are some sample outputs from the PDF Query Console Application:
+Here are some sample outputs from the PDFGPT Application:
 
 ![image](images/sample_op.png)
 *Querying from this [file](https://annualreport.stocklight.com/nasdaq/aapl/221338448.pdf)*
