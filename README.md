@@ -49,7 +49,7 @@ To use the PDFGPT application, follow these steps:
 
 3. **Configure API Key and File Path**:
 
-   Create a configuration file named **config.ini** in the project directory. You can use a text editor to create and edit this file. Add your OpenAI API key and the path to the PDF file you       want to query:
+   Create a configuration file named **config.ini** in the project directory. You can use a text editor to create and edit this file. Add your OpenAI API key and the path to the PDF file you       want to query. To change the pdf file to be queried from, simply change the file path in this config file:
 
    ```.ini
    [api_key]
