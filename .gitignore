@@ -1,0 +1,8 @@
+/env
+/db
+/.chroma
+/context
+*.ini
+/persist_directory
+/__pycache__
+*.pdf
