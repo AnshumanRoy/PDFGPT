@@ -11,11 +11,11 @@ if __name__ == '__main__':
     # Setting location for persist directory for later use.
     persist_directory = 'persist_directory'
 
-
     # Initializing ConfigParser object to read from config file.
     config = configparser.ConfigParser()
     config.read('config.ini')
 
+    file_path = config.get('file', 'path')
 
     # Setting OpenAi API key as environment variable.
     os.environ["OPENAI_API_KEY"] = config.get('api_key', 'key')
@@ -24,13 +24,14 @@ if __name__ == '__main__':
 
     print("Looking for persist directory...\n\n")
 
+    dir_location = persist_directory + '/' + os.path.basename(file_path)
 
     # Checking if persist directory has not been created yet.
-    if not os.path.isdir(persist_directory):
+    if not os.path.isdir(dir_location):
         
         # If the directory does not exist, the pdf file is read and divided into docs objects that are then stored into a persist directory.
         print("Persist directory not found. Creating directory from given context...")
-        reader = PdfReader(config.get('file', 'path'))
+        reader = PdfReader(file_path)
         page_texts = [page.extract_text() for page in reader.pages]
         text = " ".join(page_texts)
 
@@ -41,13 +42,13 @@ if __name__ == '__main__':
             )
 
         texts = text_splitter.create_documents([text])
-        vectordb = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=persist_directory)
+        vectordb = Chroma.from_documents(documents=texts, embedding=embeddings, persist_directory=dir_location)
         print("Directory created.\n\n")
 
     else:
         # If persist directory exists, it is used to retrieve docs for querying.
         print("Directory found.\n\n")
-        vectordb = Chroma(persist_directory=persist_directory, embedding_function=embeddings)
+        vectordb = Chroma(persist_directory=dir_location, embedding_function=embeddings)
 
     # Setting up the retriever to obtain the most relevant docs from the pdf to answer the query.
     print("Processing directory...")
