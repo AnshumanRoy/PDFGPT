@@ -1,4 +1,4 @@
-# PDFGPT
+# PDFGPT 🧠
 PDFGPT is a Python-based tool designed to provide users with a seamless way to extract information from PDF files using the OpenAI module. This application streamlines the process of querying text content from PDF documents, allowing users to quickly retrieve relevant information without manually parsing the files.
 
 ## Sample Output
